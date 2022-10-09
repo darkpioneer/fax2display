@@ -2,8 +2,9 @@
 Scripts for taking a fax from an asterisk server and sending it to a computer to display on a large screen
 
 fax2display.py uses sftp to transfer a file across a remote dir on another computer, in my case a raspberry pi.
-to display on the raspberry pi i used feh with the --reload option along with --full-screen and --slideshow-delay to 
-refresh every n seconds.
+
+To display on the raspberry pi i used feh with the --reload option along with --full-screen and --slideshow-delay to 
+refresh every n seconds. (see fax-display.sh for example)
 
 # Requirements
 
