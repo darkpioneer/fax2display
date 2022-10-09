@@ -19,22 +19,22 @@ make sure you have sftp'd to the client machine from the asterisk user to add th
 
 ## Asterisk Config
 
-[fax-display]
-exten => s,1,Noop("Receiving FAX")
-same => n,Answer()
-same => n,Set(FAXDEST=/tmp/faxes)
-same => n,Set(FAXNAME=${STRFTIME(,,%C%y%m%d%H%M)})
-same => n,Set(FAXPATH=${FAXDEST}${FAXNAME})
-same => n,ReceiveFax(${FAXPATH}.tif)
-same => n,Noop(Converting tif to pdf)
-same => n,Set(TIFF2PDF=${SHELL(tiff2pdf ${FAXPATH}.tif -o ${FAXPATH}.pdf)})
-same => n,Noop(Sending fax to display)
-same => n,Noop(PDF Path: ${FAXPATH}.pdf)
-same => n,Set(FAX2DISPLAY=${SHELL(python3 -u /var/lib/asterisk/bin/fax2display.py ${FAXPATH}.pdf >> /tmp/log)})
-same => n,Noop(Deleting old file)
-same => n,Set(DELETE=${SHELL(rm ${FAXPATH}*)})
-same => n,Wait(30)
-same => n,Hangup()
+    [fax-display]
+    exten => s,1,Noop("Receiving FAX")
+    same => n,Answer()
+    same => n,Set(FAXDEST=/tmp/faxes)
+    same => n,Set(FAXNAME=${STRFTIME(,,%C%y%m%d%H%M)})
+    same => n,Set(FAXPATH=${FAXDEST}${FAXNAME})
+    same => n,ReceiveFax(${FAXPATH}.tif)
+    same => n,Noop(Converting tif to pdf)
+    same => n,Set(TIFF2PDF=${SHELL(tiff2pdf ${FAXPATH}.tif -o ${FAXPATH}.pdf)})
+    same => n,Noop(Sending fax to display)
+    same => n,Noop(PDF Path: ${FAXPATH}.pdf)
+    same => n,Set(FAX2DISPLAY=${SHELL(python3 -u /var/lib/asterisk/bin/fax2display.py ${FAXPATH}.pdf >> /tmp/log)})
+    same => n,Noop(Deleting old file)
+    same => n,Set(DELETE=${SHELL(rm ${FAXPATH}*)})
+    same => n,Wait(30)
+    same => n,Hangup()
 
 # License
 
