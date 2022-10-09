@@ -9,6 +9,7 @@ filename = time.strftime("%C%y%m%d%H%M")
 
 sftp_user = "USERNAME"
 sftp_pass = "PASSWORD"
+sftp_host = "IP ADDR"
 
 from pdf2image import convert_from_path
 
@@ -24,7 +25,7 @@ def pdf_to_png(source,destino):
 
 def send_fax2display(img_path):
     print(img_path)
-    with pysftp.Connection('10.10.10.30', username=sftp_user, password=sftp_pass) as sftp:
+    with pysftp.Connection(sftp_host, username=sftp_user, password=sftp_pass) as sftp:
 
         with sftp.cd('/your/dir/of/choice/'): # cd to the display folder
             print("sending", img_path)
